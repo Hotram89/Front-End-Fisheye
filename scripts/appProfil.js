@@ -4,6 +4,7 @@ import { ProfilPage } from "./pages/ProfilPage.js";
 import { Lightbox } from "./utils/Lightbox.js";
 import { submitForm } from "./utils/contactForm.js";
 import { Filters } from "./utils/Filters.js";
+import { PageError} from "./providers/PageError.js"
 
 ////////////////////////////////////////
 
@@ -35,6 +36,9 @@ new ApiProvider()
 
   .catch(function (e) {
     console.log("zut ça ne marche pas");
+    let errorPage = new PageError(e)
+    errorPage.build()
+    console.log(e);
    });
 
 

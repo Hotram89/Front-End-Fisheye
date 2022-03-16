@@ -71,7 +71,7 @@ class Lightbox {
       });
 
       // bouton suivant
-      isActiv = classes.includes("lightbox__next");
+      isActiv = classes.includes("fa-chevron-right");
       const mediasArray = Array.from(lightboxMedias);
 
       let activMedia = document.querySelector(".lightboxImg");
@@ -87,7 +87,7 @@ class Lightbox {
         lightboxMedias[index].classList.add("lightboxImg");
       }
 
-      isActiv = classes.includes("lightbox__prev");
+      isActiv = classes.includes("fa-chevron-left");
       if (isActiv) {
         let activMedia = document.querySelector(".lightboxImg");
 
