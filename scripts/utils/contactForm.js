@@ -1,27 +1,30 @@
-const closeBtn = document.querySelector("#contact_modal img");
+const closeBtn = document.querySelector("#contact_modal header img");
+const closeSuccessBtn = document.querySelector(".success-modal img");
 const submitBtn = document.getElementById("submit_button");
 const contactBtn = document.querySelector(".contact_button");
 const modalTemp = document.querySelector(".template-modal");
+const successModal = document.querySelector(".success-modal");
+const modal = document.getElementById("contact_modal");
 contactBtn.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", closeModal);
 submitBtn.addEventListener("click", submitForm);
+closeSuccessBtn.addEventListener("click", closeSuceesModal);
 
 function displayModal() {
-  const modal = document.getElementById("contact_modal");
   modal.style.display = "flex";
 }
 
 function closeModal() {
-  const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
 }
 
 function submitForm(e) {
   e.preventDefault();
-  console.log("coucou");
   validateFields();
 }
-
+function closeSuceesModal() {
+  successModal.style.display = "none";
+}
 function validateFields() {
   let firstName = document.getElementById("firstName");
   let lastName = document.getElementById("lastName");
@@ -34,8 +37,8 @@ function validateFields() {
     validateEmailField(email) &&
     validateTextField(msg) == true
   ) {
-    console.log("c'est validé");
-    modalTemp.style.display = "none";
+    modal.style.display = "none";
+    successModal.style.display = "flex";
   }
 }
 
@@ -49,8 +52,6 @@ function validateEmailField(field) {
   let isValid = /^[\.\w_-]+@[\w-]+\.[a-z]{2,4}$/i.test(email);
 
   return isValid;
-
-  console.log("c'est pas bon");
 }
 
 export { submitForm };

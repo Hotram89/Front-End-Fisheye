@@ -46,7 +46,7 @@ class ProfilPage {
     let profil = this.photographer;
     //create HTML bloc
     const userImg = `
-        <img src="./assets/photographers/${profil.portrait}"></img>`;
+        <img src="./assets/photographers/${profil.portrait}" alt="${profil.name}"></img>`;
     const htmlHeader = `
                     <h2>${profil.name}</h2>       
                 <div class="photographer-details">
@@ -92,7 +92,7 @@ class ProfilPage {
     const prix = document.createElement("div");
     prix.classList.add("priceBox");
     const htmlPrice = `
-        <div class="numbersOfLikes"><span>${this.likes}</span> <i class="fas fa-heart"></i></div>
+        <div class="numbersOfLikes"><span>${this.likes}</span> <i class="fas fa-heart" aria-label="likes"></i></div>
         <div class="price">${profil.price}€ /jour</div>`;
     prix.innerHTML = htmlPrice;
     main.append(prix);
@@ -100,20 +100,22 @@ class ProfilPage {
 
   generateLike() {
     const likes = document.querySelectorAll(".likes");
+    let footer = document.querySelector(".numbersOfLikes  span");
+    let newLikes = parseInt(footer.innerHTML);
+    let ajout = 0
+
 
     likes.forEach((el) => {
       el.addEventListener("click", (e) => {
         //recup le span nombre
         const numero = el.querySelector(".likes__nbr");
         const coeur = el.querySelector(".fa-heart");
-        let footer = document.querySelector(".numbersOfLikes  span");
-        let newLikes = parseInt(footer.innerHTML);
 
         //recup le html existant
         let text = parseInt(numero.innerHTML);
 
         //remplace le html par un nombre et ajoute 1
-        let ajout = text + 1;
+        ajout = text + 1;
 
         //ajoute une classe
         if (coeur.classList.contains("liked")) {
@@ -123,6 +125,7 @@ class ProfilPage {
           footer.innerHTML = newLikes;
           return;
         }
+        
         numero.innerHTML = ajout;
         coeur.classList.add("liked");
 

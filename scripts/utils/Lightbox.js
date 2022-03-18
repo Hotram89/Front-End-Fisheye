@@ -5,6 +5,7 @@ class Lightbox {
   generateLightbox() {
     this.lightboxBuilder();
     this.addEventListener();
+    this.keyboardNav()
   }
 
   lightboxBuilder() {
@@ -18,6 +19,7 @@ class Lightbox {
     const clone = document.importNode(template.content, true);
     // on met les elements du template dans la lightbox
     lightbox.appendChild(clone);
+    lightbox.setAttribute("aria-label", "image closeup view")
 
     //on creer les cards medias de la ligthbox
     this.medias.forEach((media) => {
@@ -26,15 +28,49 @@ class Lightbox {
       const mediaCard = document.createElement("div");
 
       if (media.video) {
-        mediaCard.innerHTML = `<video controls src="./assets/photos/${media.video}"></video>
+        mediaCard.innerHTML = `<video controls src="./assets/photos/${media.video}" alt="${media.title}"></video>
                                         <h2>${media.title} </h2>`;
         containerLightbox.appendChild(mediaCard);
       } else
-        mediaCard.innerHTML = `<img src="./assets/photos/${media.image}"/>
+        mediaCard.innerHTML = `<img src="./assets/photos/${media.image}" alt="${media.title}"/>
         <h2>${media.title}</h2>`;
       containerLightbox.appendChild(mediaCard);
       mediaCard.classList.add("lightboxMedias");
     });
+  }
+
+  keyboardNav(){
+    const lightbox = document.getElementById("lightbox");
+    const lightboxMedias = document.querySelectorAll(".lightboxMedias");
+    const mediasArray = Array.from(lightboxMedias);
+    
+    let etape = 0;
+
+    let activMedia = document.querySelector(".lightboxImg");
+    let index = mediasArray.indexOf(activMedia);
+
+   lightbox.addEventListener('keydown', (e) => {
+
+        //press next key
+        if (e.keyCode === 39) {
+            let activMedia = document.querySelector(".lightboxImg");
+        activMedia.classList.remove("lightboxImg");
+        index++;
+        if (index >= lightboxMedias.length) {
+          index = 0;
+        }
+        lightboxMedias[index].classList.add("lightboxImg");
+        }
+        else if (e.keyCode === 37) {
+            let activMedia = document.querySelector(".lightboxImg");
+            index--;
+            if (index < 0) {
+              index = lightboxMedias.length - 1;
+            }
+            activMedia.classList.remove("lightboxImg");
+            lightboxMedias[index].classList.add("lightboxImg"); 
+        }      
+    })
   }
 
   addEventListener() {

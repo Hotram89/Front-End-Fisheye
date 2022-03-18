@@ -15,19 +15,19 @@
 <body>
     <header>
         <a href="./index.html">
-            <img src="./assets/images/logo.png" class="logo" />
+            <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" />
         </a>
     </header>
     <main id="main">
         <div class="photograph-header">
-            <button class="contact_button">Contactez-moi</button>
+            <button class="contact_button" aria-label="Contact me">Contactez-moi</button>
         </div>
 
         <div class="gallerie">
             <div class="filtersMenu">
                 <label for="filters"> Trier par 
                 </label>
-                <select name = "photofilter" id= "filters">
+                <select name = "photofilter" id= "filters" aria-label="Order by">
                     <option class="blank" value="none">Filtres</option>
                     <option class="popularity filters" value="popularity">Popularité
                     </option>
@@ -65,23 +65,27 @@
                     </div>
                     <input type="submit" id="submit_button"></button>
                 </div>
-                <div class="success-modal">Message envoyé avec succés</div>
+                
             </form>
+            
 
         </div>
+    </div>
+    <div class="success-modal"><p> Message envoyé avec succés</p> 
+        <img src="./assets/icons/close.svg" />
     </div>
     <div id="lightbox"></div>
 
     <template id="lightbox_template">
         <button class="lightbox__prev">
-            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-left" aria-label="Previous image"></i>
             </button>
         <div class="container"></div>
         <button class="lightbox__next">
-                <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-chevron-right" aria-label="Next image"></i>
             </button>
             <button class="lightbox__close">
-            <i class="fa-solid fa-xmark"></i>
+            <i class="fa-solid fa-xmark" aria-label="close dialog"></i>
             </button>
 
     </template>
