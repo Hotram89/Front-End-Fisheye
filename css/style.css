@@ -21,7 +21,7 @@ h1 {
     margin-right: 100px;
 }
 
-.photographer-section img {
+.photographers img {
     border-radius: 2500px;
     object-fit: cover;
 }
@@ -31,14 +31,14 @@ h1 {
     margin-left: 100px;
 }
 
-.photographer-section {
+.photographers {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
 }
 
-.photographer-section article {
+.photographers article {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -54,7 +54,7 @@ h1 {
     margin-bottom: 0px;
 }
 
-.photographer-section article img {
+.photographers article img {
     height: 200px;
     width: 200px;
 }

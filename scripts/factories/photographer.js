@@ -1,9 +1,8 @@
 // fonction pour lancer la creation des cards en html
 function displayData(photographers) {
-  const photographerSection = document.querySelector(".photographer-section");
+  const photographerSection = document.querySelector(".photographers");
   var userCardDOM ="";
   
-console.dir(photographers);
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     userCardDOM += photographerModel.getUserCardDOM();

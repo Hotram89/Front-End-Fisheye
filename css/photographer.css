@@ -23,9 +23,12 @@ article h2 {
     border-radius: 5px;
     cursor: pointer;
 }
-.submit_button {
+#submit_button {
     background-color: #901C1C;
     cursor: pointer;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
 }
 
 .modal {

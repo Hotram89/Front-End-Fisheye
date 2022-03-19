@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <link href="css/lightbox.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/48c9fff134.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="./assets/images/logo_favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -25,9 +27,9 @@
 
         <div class="gallerie">
             <div class="filtersMenu">
-                <label for="filters"> Trier par 
+                <label for="filters"> Trier par
                 </label>
-                <select name = "photofilter" id= "filters" aria-label="Order by">
+                <select name="photofilter" id="filters" aria-label="Order by">
                     <option class="blank" value="none">Filtres</option>
                     <option class="popularity filters" value="popularity">Popularité
                     </option>
@@ -37,13 +39,15 @@
                     </option>
                 </select>
             </div>
+        
             <section class="pictures"></section>
+        </div>
     </main>
     <div id="contact_modal">
         <div class="modal">
             <header>
                 <h2>Contactez-moi</h2>
-                <img src="./assets/icons/close.svg" />
+                <img src="./assets/icons/close.svg" alt="close dialog"/>
             </header>
             <form>
                 <div class="template-modal">
@@ -63,33 +67,30 @@
                         <label for="msg">Votre message</label>
                         <input id="msg" />
                     </div>
-                    <input type="submit" id="submit_button"></button>
+                    <input type="submit" id="submit_button"></input>
                 </div>
-                
             </form>
-            
-
         </div>
     </div>
-    <div class="success-modal"><p> Message envoyé avec succés</p> 
-        <img src="./assets/icons/close.svg" />
+    <div class="success-modal">
+        <p> Message envoyé avec succés</p>
+        <img src="./assets/icons/close.svg" alt="close dialog"/>
     </div>
     <div id="lightbox"></div>
 
     <template id="lightbox_template">
         <button class="lightbox__prev">
             <i class="fas fa-chevron-left" aria-label="Previous image"></i>
-            </button>
+        </button>
         <div class="container"></div>
         <button class="lightbox__next">
-                <i class="fas fa-chevron-right" aria-label="Next image"></i>
-            </button>
-            <button class="lightbox__close">
+            <i class="fas fa-chevron-right" aria-label="Next image"></i>
+        </button>
+        <button class="lightbox__close">
             <i class="fa-solid fa-xmark" aria-label="close dialog"></i>
-            </button>
+        </button>
 
     </template>
-
 
     <!-- <script src="./scripts/utils/contactForm.js"></script> -->
     <script type="module" src="./scripts/appProfil.js"></script>
