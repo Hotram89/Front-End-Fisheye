@@ -29,6 +29,11 @@ article h2 {
     font-weight: bold;
     color: white;
     font-size: 20px;
+    padding: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }
 
 .modal {

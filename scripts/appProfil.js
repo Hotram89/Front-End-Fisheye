@@ -25,8 +25,10 @@ new ApiProvider()
         let menu = document.getElementById('filters')
         menu.addEventListener("change", (event) => {
             let filter = event.target.value;
-          profilPage.generateCarrousel(filter);
-          profilPage.generateLike()
+        profilPage.generateCarrousel(filter);
+        profilPage.setTotalLikes()
+        profilPage.generateLike()
+          
         })
        
   })

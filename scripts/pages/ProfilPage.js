@@ -69,7 +69,7 @@ class ProfilPage {
   ////////////////////////////////////////////
   // construit la gallerie de photos et videos
   generateCarrousel(filter) {
-      
+     this.likes = 0;
     const sectionGallery = document.querySelector(".pictures");
     sectionGallery.innerHTML = "";
     let builder = new MediaBuilderFactory();
@@ -81,6 +81,7 @@ class ProfilPage {
         builder.build(media);
 
         this.likes += media.likes;
+        
   })
 }
 
@@ -98,40 +99,36 @@ class ProfilPage {
     main.append(prix);
   }
 
+  setTotalLikes() {
+    document.querySelector(".numbersOfLikes  span").innerHTML= this.likes;
+  }
+
   generateLike() {
+
     const likes = document.querySelectorAll(".likes");
     let footer = document.querySelector(".numbersOfLikes  span");
-    let newLikes = parseInt(footer.innerHTML);
-    let ajout = 0
+    let totalLikes = parseInt(footer.innerHTML);
 
 
     likes.forEach((el) => {
       el.addEventListener("click", (e) => {
+       
         //recup le span nombre
         const numero = el.querySelector(".likes__nbr");
         const coeur = el.querySelector(".fa-heart");
 
         //recup le html existant
-        let text = parseInt(numero.innerHTML);
+        let elNbLike = parseInt(numero.innerHTML);
 
         //remplace le html par un nombre et ajoute 1
-        ajout = text + 1;
+        
+        coeur.classList.toggle('liked')
 
         //ajoute une classe
-        if (coeur.classList.contains("liked")) {
-          coeur.classList.remove("liked");
-          numero.innerHTML = ajout - 2;
-          newLikes = newLikes - 1;
-          footer.innerHTML = newLikes;
-          return;
-        }
+        let isLiked = coeur.classList.contains('liked')
+        numero.innerHTML = isLiked ? ++elNbLike : --elNbLike;
         
-        numero.innerHTML = ajout;
-        coeur.classList.add("liked");
-
-        newLikes = newLikes + 1;
-
-        footer.innerHTML = newLikes;
+        footer.innerHTML = isLiked ? ++totalLikes : --totalLikes;
 
         localStorage.setItem("gcliké", "oui");
       });
