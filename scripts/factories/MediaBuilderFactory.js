@@ -10,7 +10,7 @@ class MediaBuilderFactory {
          <img id=${media.id} src="./assets/photos/${media.image}" class="gallery-media" alt="${media.title}, closeup view"></img>
          <div class="photo-details">
               <h3>${media.title} </h3>
-              <div class="likes"><span class="likes__nbr">${media.likes}</span>&nbsp<span class="fas fa-heart" aria-label="likes"></span></div>
+              <div class="likes"><span class="likes__nbr">${media.likes}</span>&nbsp<span class="fas fa-heart" aria-label="likes" aria-hidden="true"></span></div>
           </div
      </a>`;
   
@@ -26,7 +26,7 @@ class MediaBuilderFactory {
          </video>
          <div class="photo-details">
               <h3>${media.title} </h3>
-              <div class="likes"><span class="likes__nbr">${media.likes}</span>&nbsp<span class="fas fa-heart" aria-label="likes"></span></div>
+              <div class="likes"><span class="likes__nbr">${media.likes}</span>&nbsp<span class="fas fa-heart" aria-label="likes" aria-hidden="true"></span></div>
           </div
      </a>`;
      const article = document.createElement("article");

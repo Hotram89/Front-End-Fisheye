@@ -1,4 +1,4 @@
-import { ApiProvider } from "./providers/apiProvider.js";
+import { ApiProvider } from "./providers/ApiProvider.js";
 
 import { ProfilPage } from "./pages/ProfilPage.js";
 import { Lightbox } from "./utils/Lightbox.js";

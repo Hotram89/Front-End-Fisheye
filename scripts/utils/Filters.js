@@ -10,6 +10,8 @@ class Filters {
             return this.likeFilter()
         case 'title' :
             return this.titleFilter()
+        case 'date' :
+            return this.dateFilter()
         default :
             return this.medias
                 
@@ -43,6 +45,16 @@ class Filters {
       }
     });
     return array
+  }
+
+  dateFilter() {
+    let array = Array.from(this.medias);
+    array.sort((a, b) => {
+        if (a.date < b.date) {
+            return -1;
+        }
+    })
+    return array.reverse()
   }
 }
 

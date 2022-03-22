@@ -32,6 +32,7 @@ class ProfilPage {
     this.generateCarrousel();
     this.generateFooter();
     this.generateLike();
+    this.nameContactModal()
     
   }
   
@@ -84,7 +85,11 @@ class ProfilPage {
         
   })
 }
-
+    nameContactModal() {
+        let profil = this.photographer
+        const name = document.getElementById('contactName')
+        name.innerHTML= profil.name
+    }
   ////////////////////////////////////////////
   // construit le footer avec le prix et les likes
   generateFooter() {
@@ -93,7 +98,7 @@ class ProfilPage {
     const prix = document.createElement("div");
     prix.classList.add("priceBox");
     const htmlPrice = `
-        <div class="numbersOfLikes"><span>${this.likes}</span> <i class="fas fa-heart" aria-label="likes"></i></div>
+        <div class="numbersOfLikes"><span>${this.likes}</span> <i class="fas fa-heart" aria-label="likes" aria-hidden="true"></i></div>
         <div class="price">${profil.price}€ /jour</div>`;
     prix.innerHTML = htmlPrice;
     main.append(prix);

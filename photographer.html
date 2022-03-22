@@ -45,8 +45,11 @@
     </main>
     <div id="contact_modal">
         <div class="modal">
-            <header>
+            <header id="contactHeader">
+                <div class="heroSection">
                 <h2>Contactez-moi</h2>
+                <h2 id="contactName"></h2>
+            </div>
                 <img src="./assets/icons/close.svg" alt="close dialog"/>
             </header>
             <form>
@@ -65,7 +68,7 @@
                     </div>
                     <div>
                         <label for="msg">Votre message</label>
-                        <input id="msg" />
+                        <textarea name="msg" id="msg" cols="30" rows="5"></textarea>
                     </div>
                     <button type="submit" id="submit_button">Envoyer</button>
                 </div>
@@ -80,14 +83,14 @@
 
     <template id="lightbox_template">
         <button class="lightbox__prev">
-            <i class="fas fa-chevron-left" aria-label="Previous image"></i>
+            <i class="fas fa-chevron-left" aria-label="Previous image" aria-hidden="true"></i>
         </button>
         <div class="container"></div>
         <button class="lightbox__next">
-            <i class="fas fa-chevron-right" aria-label="Next image"></i>
+            <i class="fas fa-chevron-right" aria-label="Next image" aria-hidden="true"></i>
         </button>
         <button class="lightbox__close">
-            <i class="fa-solid fa-xmark" aria-label="close dialog"></i>
+            <i class="fa-solid fa-xmark" aria-label="close dialog" aria-hidden="true"></i>
         </button>
 
     </template>

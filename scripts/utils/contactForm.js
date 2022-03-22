@@ -2,29 +2,38 @@ const closeBtn = document.querySelector("#contact_modal header img");
 const closeSuccessBtn = document.querySelector(".success-modal img");
 const submitBtn = document.getElementById("submit_button");
 const contactBtn = document.querySelector(".contact_button");
-const modalTemp = document.querySelector(".template-modal");
 const successModal = document.querySelector(".success-modal");
 const modal = document.getElementById("contact_modal");
+
+// afficher la modale de contact
 contactBtn.addEventListener("click", displayModal);
+// fermer la modale de contact
 closeBtn.addEventListener("click", closeModal);
+// vérifier les informations saisies avant d'envoyer
 submitBtn.addEventListener("click", submitForm);
+// fermer la modale de réussite de l'envoi
 closeSuccessBtn.addEventListener("click", closeSuceesModal);
 
+// fonction pour afficher la modale de contact
 function displayModal() {
   modal.style.display = "flex";
 }
 
+// fonction pour fermer la modale de contact
 function closeModal() {
   modal.style.display = "none";
 }
 
+// fonction pour vérifier les informations saisies avant d'envoyer
 function submitForm(e) {
   e.preventDefault();
   validateFields();
 }
+// fonction pour fermer la modale de réussite de l'envoi
 function closeSuceesModal() {
   successModal.style.display = "none";
 }
+
 function validateFields() {
   let firstName = document.getElementById("firstName");
   let lastName = document.getElementById("lastName");
