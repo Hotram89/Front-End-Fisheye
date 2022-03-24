@@ -1,141 +1,135 @@
 class Lightbox {
-  constructor(medias) {
-    this.medias = medias;
-  }
-  generateLightbox() {
-    this.lightboxBuilder();
-    this.addEventListener();
-    this.keyboardNav()
-  }
+    constructor(medias) {
+        this.medias = medias;
+    }
+    generateLightbox() {
+        this.lightboxBuilder();
+        this.addEventListener();
+        this.keyboardNav();
+    }
 
-  lightboxBuilder() {
-    //DOM elements
-    const mediasGallery = document.querySelectorAll(".pictures img, a video");
-    // on recupere le template de la ligthbox
-    const template = document.getElementById("lightbox_template");
-    const lightbox = document.getElementById("lightbox");
+    lightboxBuilder() {
+        // on recupere le template de la ligthbox
+        const template = document.getElementById('lightbox_template');
+        const lightbox = document.getElementById('lightbox');
 
-    // On clone le template
-    const clone = document.importNode(template.content, true);
-    // on met les elements du template dans la lightbox
-    lightbox.appendChild(clone);
-    lightbox.setAttribute("aria-label", "image closeup view")
+        // On clone le template
+        const clone = document.importNode(template.content, true);
+        // on met les elements du template dans la lightbox
+        lightbox.appendChild(clone);
+        lightbox.setAttribute('aria-label', 'image closeup view');
 
-    //on creer les cards medias de la ligthbox
-    this.medias.forEach((media) => {
-      // const buildLightboxMedia = lightbox.createElement("div");
-      const containerLightbox = lightbox.querySelector(".container");
-      const mediaCard = document.createElement("div");
+        //on creer les cards medias de la ligthbox
+        this.medias.forEach((media) => {
+        // const buildLightboxMedia = lightbox.createElement('div');
+            const containerLightbox = lightbox.querySelector('.container');
+            const mediaCard = document.createElement('div');
 
-      if (media.video) {
-        mediaCard.innerHTML = `<video controls src="./assets/photos/${media.video}" alt="${media.title}"></video>
-                                        <h2>${media.title} </h2>`;
-        containerLightbox.appendChild(mediaCard);
-      } else
-        mediaCard.innerHTML = `<img src="./assets/photos/${media.image}" alt="${media.title}"/>
-        <h2>${media.title}</h2>`;
-      containerLightbox.appendChild(mediaCard);
-      mediaCard.classList.add("lightboxMedias");
-    });
-  }
+            if (media.video) {
+                mediaCard.innerHTML = `<video controls src='./assets/photos/${media.video}' alt='${media.title}'></video>
+                                                <h2>${media.title} </h2>`;
+                containerLightbox.appendChild(mediaCard);
+            } else
+                mediaCard.innerHTML = `<img src='./assets/photos/${media.image}' alt='${media.title}'/>
+                <h2>${media.title}</h2>`;
+            containerLightbox.appendChild(mediaCard);
+            mediaCard.classList.add('lightboxMedias');
+        });
+    }
 
-  keyboardNav(){
-    const lightbox = document.getElementById("lightbox");
-    const lightboxMedias = document.querySelectorAll(".lightboxMedias");
-    const mediasArray = Array.from(lightboxMedias);
+    keyboardNav(){
+        const lightbox = document.getElementById('lightbox');
+        const lightboxMedias = document.querySelectorAll('.lightboxMedias');
+        const mediasArray = Array.from(lightboxMedias);
     
-    let etape = 0;
+        let activMedia = document.querySelector('.lightboxImg');
+        let index = mediasArray.indexOf(activMedia);
 
-    let activMedia = document.querySelector(".lightboxImg");
-    let index = mediasArray.indexOf(activMedia);
+        lightbox.addEventListener('keydown', (e) => {
 
-   lightbox.addEventListener('keydown', (e) => {
-
-        //press next key
-        if (e.keyCode === 39) {
-            let activMedia = document.querySelector(".lightboxImg");
-        activMedia.classList.remove("lightboxImg");
-        index++;
-        if (index >= lightboxMedias.length) {
-          index = 0;
-        }
-        lightboxMedias[index].classList.add("lightboxImg");
-        }
-        else if (e.keyCode === 37) {
-            let activMedia = document.querySelector(".lightboxImg");
-            index--;
-            if (index < 0) {
-              index = lightboxMedias.length - 1;
+            //press next key
+            if (e.keyCode === 39) {
+                let activMedia = document.querySelector('.lightboxImg');
+                activMedia.classList.remove('lightboxImg');
+                index++;
+                if (index >= lightboxMedias.length) {
+                    index = 0;
+                }
+                lightboxMedias[index].classList.add('lightboxImg');
             }
-            activMedia.classList.remove("lightboxImg");
-            lightboxMedias[index].classList.add("lightboxImg"); 
-        }      
-    })
-  }
+            else if (e.keyCode === 37) {
+                let activMedia = document.querySelector('.lightboxImg');
+                index--;
+                if (index < 0) {
+                    index = lightboxMedias.length - 1;
+                }
+                activMedia.classList.remove('lightboxImg');
+                lightboxMedias[index].classList.add('lightboxImg'); 
+            }      
+        });
+    }
 
-  addEventListener() {
-    const gallery = document.querySelector("body");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxMedias = document.querySelectorAll(".lightboxMedias");
-    let etape = 0;
+    addEventListener() {
+        const gallery = document.querySelector('body');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxMedias = document.querySelectorAll('.lightboxMedias');
 
-    gallery.addEventListener("click", function (event) {
-      let classes = event.target.className;
-      let isActiv = classes.includes("gallery-media");
+        gallery.addEventListener('click', function (event) {
+            let classes = event.target.className;
+            let isActiv = classes.includes('gallery-media');
 
-      //ouvrir la lightbox
-      if (isActiv) {
-        lightbox.classList.add("active");
-      }
+            //ouvrir la lightbox
+            if (isActiv) {
+                lightbox.classList.add('active');
+            }
 
-      // fermer la lightbox
-      isActiv = classes.includes("lightbox__close");
-      if (isActiv) {
-        let activImg = document.querySelector(".lightboxImg");
-        lightbox.classList.remove("active");
-        activImg.classList.remove("lightboxImg");
-        etape = 0;
-      }
+            // fermer la lightbox
+            isActiv = classes.includes('lightbox__close');
+            if (isActiv) {
+                let activImg = document.querySelector('.lightboxImg');
+                lightbox.classList.remove('active');
+                activImg.classList.remove('lightboxImg');
+            }
 
-      // afficher le media dans la lightbox
-      lightboxMedias.forEach((media) => {
-        let img = media.querySelector("img, video");
+            // afficher le media dans la lightbox
+            lightboxMedias.forEach((media) => {
+                let img = media.querySelector('img, video');
 
-        if (img.src == event.target.src) {
-          media.classList.add("lightboxImg");
-        }
-      });
+                if (img.src == event.target.src) {
+                    media.classList.add('lightboxImg');
+                }
+            });
 
-      // bouton suivant
-      isActiv = classes.includes("fa-chevron-right");
-      const mediasArray = Array.from(lightboxMedias);
+            // bouton suivant
+            isActiv = classes.includes('fa-chevron-right');
+            const mediasArray = Array.from(lightboxMedias);
 
-      let activMedia = document.querySelector(".lightboxImg");
-      let index = mediasArray.indexOf(activMedia);
+            let activMedia = document.querySelector('.lightboxImg');
+            let index = mediasArray.indexOf(activMedia);
 
-      if (isActiv) {
-        let activMedia = document.querySelector(".lightboxImg");
-        activMedia.classList.remove("lightboxImg");
-        index++;
-        if (index >= lightboxMedias.length) {
-          index = 0;
-        }
-        lightboxMedias[index].classList.add("lightboxImg");
-      }
+            if (isActiv) {
+                let activMedia = document.querySelector('.lightboxImg');
+                activMedia.classList.remove('lightboxImg');
+                index++;
+                if (index >= lightboxMedias.length) {
+                    index = 0;
+                }
+                lightboxMedias[index].classList.add('lightboxImg');
+            }
 
-      isActiv = classes.includes("fa-chevron-left");
-      if (isActiv) {
-        let activMedia = document.querySelector(".lightboxImg");
+            isActiv = classes.includes('fa-chevron-left');
+            if (isActiv) {
+                let activMedia = document.querySelector('.lightboxImg');
 
-        index--;
-        if (index < 0) {
-          index = lightboxMedias.length - 1;
-        }
-        activMedia.classList.remove("lightboxImg");
-        lightboxMedias[index].classList.add("lightboxImg");
-      }
-    });
-  }
+                index--;
+                if (index < 0) {
+                    index = lightboxMedias.length - 1;
+                }
+                activMedia.classList.remove('lightboxImg');
+                lightboxMedias[index].classList.add('lightboxImg');
+            }
+        });
+    }
 }
 
 export { Lightbox };
