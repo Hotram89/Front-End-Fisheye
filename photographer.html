@@ -29,15 +29,15 @@
             <div class="filtersMenu">
                 <label for="filters"> Trier par
                 </label>
-                <select name="photofilter" id="filters" aria-label="Order by">
-                    <option class="blank" value="none">Filtres</option>
-                    <option class="popularity filters" value="popularity">Popularité
-                    </option>
-                    <option class="date filters" value="date">Date
-                    </option>
-                    <option class="title filters" value="title">Titre
-                    </option>
-                </select>
+                
+                <ul class="options-container" id="filters" aria-label="Order by" role="button">
+                    <img src="./assets/icons/Chevron_down_font_awesome.svg"/>
+                    <li class="a selected filters" value="popularity">Popularité</li>
+                    <div class="wrap">
+                        <li class="b filters" value="date">Date</li>
+                        <li class="c filters" value="title">Titre</li>
+                    </div>
+                </ul>
             </div>
         
             <section class="pictures"></section>

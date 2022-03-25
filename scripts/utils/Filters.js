@@ -3,13 +3,47 @@ class Filters {
         this.medias = medias;
     }
 
+    openFilters() {
+        const filtersMenu = document.querySelector('.filtersMenu')
+        const selectedFilter = document.querySelector('.selected')
+        const wrapper = document.querySelector('.wrap')
+        const chevron = document.querySelector('.filtersMenu img')
+
+        selectedFilter.addEventListener('click', () => {
+            wrapper.classList.toggle('active');
+            chevron.classList.toggle('active')
+        })
+
+        filtersMenu.addEventListener('click', (event)=> {
+            
+            let monContenu = event.target.innerHTML
+            if (monContenu == "Date"){
+                event.target.innerHTML = selectedFilter.innerHTML
+                selectedFilter.innerHTML = "Date";
+            }
+            if (monContenu == "Titre"){
+                event.target.innerHTML = selectedFilter.innerHTML
+                selectedFilter.innerHTML = "Titre";    
+            }
+            if (monContenu == "Popularité") {
+                event.target.innerHTML = selectedFilter.innerHTML
+                selectedFilter.innerHTML = "Popularité";
+            }
+                
+        })
+
+
+        
+    }
+
     sortBy(typeDeTrie) {
+        this.openFilters()
         switch(typeDeTrie) {
-        case 'popularity':
+        case 'Popularité':
             return this.likeFilter();
-        case 'title' :
+        case 'Titre' :
             return this.titleFilter();
-        case 'date' :
+        case 'Date' :
             return this.dateFilter();
         default :
             return this.medias;                

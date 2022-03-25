@@ -22,8 +22,8 @@ new ApiProvider()
         new Lightbox(profilPage.mediaFotographers).generateLightbox();
 
         let menu = document.getElementById('filters');
-        menu.addEventListener('change', (event) => {
-            let filter = event.target.value;
+        menu.addEventListener('click', (event) => {
+            let filter = event.target.innerHTML;
             profilPage.generateCarrousel(filter);
             profilPage.setTotalLikes();
             profilPage.generateLike();
