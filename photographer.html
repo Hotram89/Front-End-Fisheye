@@ -22,20 +22,20 @@
     </header>
     <main id="main">
         <div class="photograph-header">
-            <button class="contact_button" aria-label="Contact me">Contactez-moi</button>
+            <button class="contact_button">Contactez-moi</button>
         </div>
 
         <div class="gallerie">
-            <div class="filtersMenu">
+            <div class="filtersMenu" >
                 <label for="filters"> Trier par
                 </label>
                 
-                <ul class="options-container" id="filters" aria-label="Order by" role="button">
+                <ul class="options-container" id="filters" aria-label="Order by" tabindex="0" role="button"aria-haspopup="listbox" aria-expanded="true" >
                     <img src="./assets/icons/Chevron_down_font_awesome.svg"/>
-                    <li class="a selected filters" value="popularity">Popularité</li>
+                    <li class="a selected filters" value="popularity" tabindex="1">Popularité</li>
                     <div class="wrap">
-                        <li class="b filters" value="date">Date</li>
-                        <li class="c filters" value="title">Titre</li>
+                        <li class="b filters" value="date" tabindex="2">Date</li>
+                        <li class="c filters" value="title" tabindex="3">Titre</li>
                     </div>
                 </ul>
             </div>

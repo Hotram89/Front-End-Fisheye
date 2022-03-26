@@ -1,3 +1,7 @@
+*:focus {
+    outline: #901C1C solid 3px;
+    outline-offset: 3px;
+}
 
 /*******************/
 /**** Gallery*******/
@@ -116,9 +120,12 @@ h3 {
     font-weight: 700;
     position: relative;
     height: 80px;
-    margin-left: 6rem;
     margin-top: 0;
    
+}
+.filtersMenu label {
+    margin-right: 2rem;
+
 }
 .options-container{
     font-size: 18px;
@@ -138,7 +145,7 @@ h3 {
     padding: 0.7rem;
     border-bottom: #fafafab6 1px solid;
 }
-.filters:hover {
+.filters:hover, .filters:focus {
     background-color: #DB8876;
 }
 

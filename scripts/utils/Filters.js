@@ -9,6 +9,8 @@ class Filters {
         const wrapper = document.querySelector('.wrap')
         const chevron = document.querySelector('.filtersMenu img')
 
+        filtersMenu.focus()
+
         selectedFilter.addEventListener('click', () => {
             wrapper.classList.toggle('active');
             chevron.classList.toggle('active')
@@ -31,6 +33,24 @@ class Filters {
             }
                 
         })
+
+        filtersMenu.addEventListener('keydown', (e) => {
+            console.log(e);
+            if (e.key === 'Enter') {
+                wrapper.classList.toggle('active');
+            chevron.classList.toggle('active')
+            }
+
+            if (e.key === 'ArrowDown') {
+                if (wrapper.classList.contains('active')){
+                    console.log("ok");
+                    
+                }
+
+            }
+
+        })
+
 
 
         

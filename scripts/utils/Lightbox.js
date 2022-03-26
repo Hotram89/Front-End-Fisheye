@@ -37,10 +37,23 @@ class Lightbox {
         });
     }
 
+
+
     keyboardNav(){
         const lightbox = document.getElementById('lightbox');
         const lightboxMedias = document.querySelectorAll('.lightboxMedias');
         const mediasArray = Array.from(lightboxMedias);
+        const articles = document.querySelectorAll('.article-media img, .article-media video')
+
+        articles.forEach((article) => {
+            article.addEventListener('keydown', (e) => {
+                if (e.key ==='Enter') {
+                    console.log('coucou');
+                    lightbox.classList.add('active');       
+                }
+                console.log(e);
+            })
+        })
     
         let activMedia = document.querySelector('.lightboxImg');
         let index = mediasArray.indexOf(activMedia);

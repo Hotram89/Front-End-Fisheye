@@ -65,6 +65,8 @@ class ProfilPage {
         // insert HTML into the page
         photographersHeader.appendChild(image);
         photographersHeader.insertBefore(article, contactBtn);
+        let ariaName = "contact me " + profil.name
+        contactBtn.setAttribute("aria-label", ariaName)
     }
 
     ////////////////////////////////////////////

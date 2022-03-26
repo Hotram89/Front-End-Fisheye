@@ -11,13 +11,15 @@ function displayData(photographers) {
     photographerSection.innerHTML = userCardDOM;
 }
 
+
+
 // fonction pour constuire des elements html
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
     function getUserCardDOM() {
         return  `<article>
-          <a class='photographer-link' href='./photographer.html?id=${id}'>
+          <a class='photographer-link' href='./photographer.html?id=${id}' tabindex="0">
               <img src='assets/photographers/${portrait}'>
               <h2>${name}</h2>
               </a>
@@ -31,5 +33,6 @@ function photographerFactory(data) {
     }
     return { getUserCardDOM, name, portrait, city, country, tagline, price, id };
 }
+
 
 export { displayData };
