@@ -28,6 +28,14 @@ new ApiProvider()
             profilPage.setTotalLikes();
             profilPage.generateLike();
         });
+
+        menu.addEventListener('keydown',(e) => {
+            let focus = document.querySelector(':focus')
+            focus = focus.innerHTML;
+            profilPage.generateCarrousel(focus);
+            profilPage.setTotalLikes();
+            profilPage.generateLike();
+        })
     })
 
 

@@ -18,7 +18,7 @@ button {
     border: none;
 }
 
-.lightbox__next i, .lightbox__prev i{
+.lightbox__next span, .lightbox__prev span{
     color: #911C1C;
     padding: 5rem 1rem;
     font-size: 48px;
@@ -28,8 +28,8 @@ button {
     margin: 0 2rem;
 }
 
-.lightbox__next i:hover,
-.lightbox__prev i:hover{
+.lightbox__next span:hover,
+.lightbox__prev span:hover{
     opacity: 1;
 }
 

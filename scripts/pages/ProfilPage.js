@@ -115,6 +115,33 @@ class ProfilPage {
         let footer = document.querySelector('.numbersOfLikes  span');
         let totalLikes = parseInt(footer.innerHTML);
 
+        likes.forEach((element) => {
+            element.addEventListener('keydown', (e) => {
+
+                
+                if( e.key ==='Enter'){
+                    
+                    //recup le span nombre
+                const numero = element.querySelector('.likes__nbr');
+                const coeur = element.querySelector('.fa-heart');
+
+                //recup le html existant
+                let elNbLike = parseInt(numero.innerHTML);
+
+                //remplace le html par un nombre et ajoute 1
+            
+                coeur.classList.toggle('liked')
+
+                //ajoute une classe
+                let isLiked = coeur.classList.contains('liked')
+                numero.innerHTML = isLiked ? ++elNbLike : --elNbLike;
+            
+                footer.innerHTML = isLiked ? ++totalLikes : --totalLikes;
+                }
+                
+            })
+        })
+
         likes.forEach((el) => {
             el.addEventListener('click', (e) => {
             
