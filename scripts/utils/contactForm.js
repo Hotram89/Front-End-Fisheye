@@ -26,8 +26,19 @@ function closeModal() {
 
 // fonction pour vérifier les informations saisies avant d'envoyer
 function submitForm(e) {
+    let firstName = document.getElementById('firstName');
+    let lastName = document.getElementById('lastName');
+    let email = document.getElementById('email');
+    let msg = document.getElementById('msg');
+
     e.preventDefault();
     validateFields();
+    
+    console.group("Données du formulaire");
+    var data = [['Prénom: ',firstName.value ], ['Nom: ' , lastName.value], ['Email:' , email.value], ['Message: ', msg.value]]
+    console.table(data)
+
+    
 }
 // fonction pour fermer la modale de réussite de l'envoi
 function closeSuceesModal() {
@@ -39,7 +50,7 @@ function validateFields() {
     let lastName = document.getElementById('lastName');
     let email = document.getElementById('email');
     let msg = document.getElementById('msg');
-
+    
     if (
         validateTextField(firstName) &&
     validateTextField(lastName) &&
@@ -48,13 +59,15 @@ function validateFields() {
     ) {
         modal.style.display = 'none';
         successModal.style.display = 'flex';
+        
     }
 }
+
 
 function validateTextField(field) {
     let isValid =
     field.value.trim().length > 1 && /^[a-zéèêë ,.'-']+$/i.test(field.value);
-    console.log(field.value);
+    
     return isValid;
 }
 function validateEmailField(field) {
