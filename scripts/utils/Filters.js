@@ -11,27 +11,45 @@ class Filters {
 
     filtersMenu.focus();
 
-    selectedFilter.addEventListener("click", () => {
+    filtersMenu.addEventListener("click", (event) => {
       wrapper.classList.toggle("active");
       chevron.classList.toggle("active");
-    });
 
-    filtersMenu.addEventListener("click", (event) => {
       let monContenu = event.target.innerHTML;
-      console.log(monContenu);
-      if (monContenu == "Date") {
+
+      if ((monContenu === "Date")) {
         event.target.innerHTML = selectedFilter.innerHTML;
         selectedFilter.innerHTML = "Date";
       }
-      if (monContenu == "Titre") {
+      if (monContenu === "Titre") {
         event.target.innerHTML = selectedFilter.innerHTML;
         selectedFilter.innerHTML = "Titre";
       }
-      if (monContenu == "Popularité") {
-        event.target.innerHTML = selectedFilter.innerHTML;
-        selectedFilter.innerHTML = "Popularité";
+      if (monContenu === "Popularité") {
+         event.target.innerHTML = selectedFilter.innerHTML;
+         selectedFilter.innerHTML = "Popularité";
       }
     });
+
+    //  filtersMenu.addEventListener("click", (event) => {
+
+    //    let monContenu = event.target.innerHTML;
+
+    //    console.log(monContenu);
+    //    console.log(selectedFilter);
+    //    if ((monContenu === "Date")) {
+    //      event.target.innerHTML = selectedFilter.innerHTML;
+    //      selectedFilter.innerHTML = "Date";
+    //    }
+    //    if (monContenu === "Titre") {
+    //      event.target.innerHTML = selectedFilter.innerHTML;
+    //      selectedFilter.innerHTML = "Titre";
+    //    }
+      
+    //       event.target.innerHTML = selectedFilter.innerHTML;
+    //       selectedFilter.innerHTML = "Popularité";
+      
+    //  });
 
     filtersMenu.addEventListener("keydown", (e) => {
       let focus = document.querySelector(":focus");

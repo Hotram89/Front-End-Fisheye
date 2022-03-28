@@ -17,11 +17,16 @@ closeSuccessBtn.addEventListener('click', closeSuceesModal);
 // fonction pour afficher la modale de contact
 function displayModal() {
     modal.style.display = 'flex';
+    let firstName = document.getElementById('firstName');
+    firstName.focus()
+
+
 }
 
 // fonction pour fermer la modale de contact
 function closeModal() {
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
 }
 
 // fonction pour vérifier les informations saisies avant d'envoyer

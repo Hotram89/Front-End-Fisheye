@@ -19,7 +19,7 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         return  `<article>
-          <a class='photographer-link' href='./photographer.html?id=${id}' tabindex="0">
+          <a class='photographer-link' href='./photographer.html?id=${id}'>
               <img src='assets/photographers/${portrait}'>
               <h2>${name}</h2>
               </a>

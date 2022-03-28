@@ -16,6 +16,11 @@
     object-fit: cover;
     border-radius: 5px;
 }
+
+.gallerie video{
+    z-index: -100;
+}
+
 .pictures {
     margin: 0 100px;
     display: grid;
@@ -26,7 +31,7 @@
 .pictures a {
     cursor: pointer;
 }
-.gallerie article {
+.article-media {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,6 +62,7 @@ h3 {
 .likes {
     font-size: 24px;
     color:   #901C1C;
+    cursor: pointer;
 }
 .liked {
     color: #eb7777;
@@ -115,23 +121,29 @@ h3 {
 
 .filtersMenu {
     display: flex;
+    width: 20rem;
     margin: 0 100px;
     font-size: 18px;
     font-weight: 700;
     position: relative;
     height: 80px;
-    margin-top: 0;
-   
+    margin-top: 0; 
 }
-.filtersMenu label {
-    margin-right: 2rem;
 
+.filtersMenu label {
+    min-width: 5rem;
 }
 .options-container{
     font-size: 18px;
     border-radius: 5px;
     margin-top: 0;
     position: relative;
+    margin-left: 3rem;
+    
+}
+ul {
+    margin: 0;
+    padding: 0;
 }
 
 .filters {
@@ -144,17 +156,18 @@ h3 {
     cursor: pointer;
     padding: 0.7rem;
     border-bottom: #fafafab6 1px solid;
+    z-index: 0;
 }
 .filters:hover, .filters:focus {
     background-color: #DB8876;
 }
-
-.a {
+ul :first-child{
     border-radius: 5px 5px 0 0;
 }
-.c {
+ul :last-child{
     border-radius: 0 0 5px 5px;
 }
+
 .wrap {
     display: none;
     flex-direction: column;
@@ -163,34 +176,22 @@ h3 {
     display: flex;
 }
 
-.options-container img{
+.filtersMenu img{
     width: 25px;
     position: absolute;
+    z-index: 100;
     top: 0.7rem;
     right: 0.5rem; 
     filter:  invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
     pointer-events: none;
 }
 
-.options-container img.active {
+.filtersMenu img.active {
     transform: rotate(180deg);
 
 }
 
 
-.selected {
-    display: flex;
-    justify-content: space-between;
-}
-
-.title {
-    border: none;
-}
-
-.filtersMenu  option {
-    background-color: #DB8876;
-    text-decoration: underline;
-}
 
 /*******************************/
 /********Compteur de likes******/

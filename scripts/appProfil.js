@@ -19,7 +19,8 @@ new ApiProvider()
         let profilPage = new ProfilPage(res);
         profilPage.generateAll();
 
-        new Lightbox(profilPage.mediaFotographers).generateLightbox();
+        let lightbox = new Lightbox(profilPage.mediaFotographers)
+        lightbox.generateLightbox();
 
         let menu = document.getElementById('filters');
         menu.addEventListener('click', (event) => {
@@ -27,6 +28,7 @@ new ApiProvider()
             profilPage.generateCarrousel(filter);
             profilPage.setTotalLikes();
             profilPage.generateLike();
+            
         });
 
         menu.addEventListener('keydown',(e) => {
@@ -35,6 +37,8 @@ new ApiProvider()
             profilPage.generateCarrousel(focus);
             profilPage.setTotalLikes();
             profilPage.generateLike();
+            
+            
         })
     })
 

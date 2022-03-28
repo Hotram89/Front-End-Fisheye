@@ -1,6 +1,9 @@
+import { Filters } from './Filters.js'
+
 class Lightbox {
     constructor(medias) {
         this.medias = medias;
+        
     }
     generateLightbox() {
         this.lightboxBuilder();
@@ -8,7 +11,7 @@ class Lightbox {
         this.keyboardNav();
     }
 
-    lightboxBuilder() {
+    lightboxBuilder(filter) {
         // on recupere le template de la ligthbox
         const template = document.getElementById('lightbox_template');
         const lightbox = document.getElementById('lightbox');
@@ -18,9 +21,14 @@ class Lightbox {
         // on met les elements du template dans la lightbox
         lightbox.appendChild(clone);
         lightbox.setAttribute('aria-label', 'image closeup view');
+        
+        let medias  = this.medias;
+        let filters = new Filters(medias);
+        medias = filters.sortBy(filter)
+        console.log(filters);
 
         //on creer les cards medias de la ligthbox
-        this.medias.forEach((media) => {
+        medias.forEach((media) => {
         // const buildLightboxMedia = lightbox.createElement('div');
             const containerLightbox = lightbox.querySelector('.container');
             const mediaCard = document.createElement('div');
