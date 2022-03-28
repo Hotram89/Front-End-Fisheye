@@ -2,7 +2,15 @@
     outline: #901C1C solid 3px;
     outline-offset: 3px;
 }
-
+button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
 /*******************/
 /**** Gallery*******/
 /*******************/
@@ -142,12 +150,9 @@ h3 {
     margin-top: 0;
     position: relative;
     margin-left: 3rem;
-    
+    margin-bottom: 2rem;
 }
-ul {
-    margin: 0;
-    padding: 0;
-}
+
 
 .filters {
     background-color: #901C1C;
@@ -164,10 +169,10 @@ ul {
 .filters:hover, .filters:focus {
     background-color: #DB8876;
 }
-ul :first-child{
+.options-container :first-child{
     border-radius: 5px 5px 0 0;
 }
-ul :last-child{
+.options-container :last-child{
     border-radius: 0 0 5px 5px;
 }
 

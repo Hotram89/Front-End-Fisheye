@@ -22,13 +22,25 @@ new ApiProvider()
         let lightbox = new Lightbox(profilPage.mediaFotographers)
         lightbox.generateLightbox();
 
-        let menu = document.getElementById('filters');
+         let menu = document.getElementById('filters');
         menu.addEventListener('click', (event) => {
+        
+          const domItem = event.target.className
+          
+          if (domItem.includes('selected filters')) {
+            let filter = new Filters()
+            filter.openFilters()
+          }
+          
+          if (domItem.includes('filters') && !domItem.includes('selected')) {
             let filter = event.target.innerHTML;
             profilPage.generateCarrousel(filter);
             profilPage.setTotalLikes();
             profilPage.generateLike();
-            
+            lightbox.destroyLightbox()
+            lightbox.generateLightbox();
+          }
+        
         });
 
         menu.addEventListener('keydown',(e) => {

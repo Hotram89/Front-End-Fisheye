@@ -33,6 +33,7 @@ class Lightbox {
             const containerLightbox = lightbox.querySelector('.container');
             const mediaCard = document.createElement('div');
 
+
             if (media.video) {
                 mediaCard.innerHTML = `<video controls src='./assets/photos/${media.video}' alt='${media.title}'></video>
                                                 <h2>${media.title} </h2>`;
@@ -45,6 +46,10 @@ class Lightbox {
         });
     }
 
+    destroyLightbox(){
+        const lightbox = document.getElementById('lightbox');
+    lightbox.innerHTML = ''
+    }
 
 
     keyboardNav(){
