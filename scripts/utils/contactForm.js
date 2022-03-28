@@ -1,4 +1,4 @@
-const closeBtn = document.querySelector('#contact_modal header img');
+const closeBtn = document.querySelector('.close_form');
 const closeSuccessBtn = document.querySelector('.success-modal img');
 const submitBtn = document.getElementById('submit_button');
 const contactBtn = document.querySelector('.contact_button');
@@ -17,9 +17,8 @@ closeSuccessBtn.addEventListener('click', closeSuceesModal);
 // fonction pour afficher la modale de contact
 function displayModal() {
     modal.style.display = 'flex';
-    let firstName = document.getElementById('firstName');
-    firstName.focus()
-
+    document.getElementById('firstName').focus();
+   
 
 }
 

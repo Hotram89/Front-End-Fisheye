@@ -8,6 +8,7 @@
 /*******************/
 .gallerie {
     margin-bottom: 5rem;
+    margin: 0 10rem;
 }
 
 .gallerie article img, .gallerie article video {
@@ -81,10 +82,11 @@ h3 {
  .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    margin: 0 10rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+   
 }
  article h2 {
     font-size: 64px;
@@ -128,6 +130,7 @@ h3 {
     position: relative;
     height: 80px;
     margin-top: 0; 
+    z-index: 2;
 }
 
 .filtersMenu label {
@@ -156,7 +159,7 @@ ul {
     cursor: pointer;
     padding: 0.7rem;
     border-bottom: #fafafab6 1px solid;
-    z-index: 0;
+   
 }
 .filters:hover, .filters:focus {
     background-color: #DB8876;
@@ -304,8 +307,32 @@ article h2 {
 }
 
 
-.modal header img {
+.close_form {
+    opacity: 1;
     cursor: pointer;
+  }
+  .close_form:before,
+  .close_form:after {
+    position: absolute;
+    content: " ";
+    height: 73px;
+    width: 10px;
+    
+    background-color: #fff;
+  }
+  .close_form:before {
+    transform: rotate(45deg);
+  }
+  .close_form:after {
+    transform: rotate(-45deg);
+  }
+
+.modal header span {
+    cursor: pointer;
+    color: white;
+    background-color: yellow;
+    width: 50px;
+    height: 50px;
 }
 
 .modal header h2 {
