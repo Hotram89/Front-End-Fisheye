@@ -17,6 +17,12 @@ class Lightbox {
     setMedias(mediaArray) {
         this.medias = mediaArray
     }
+    openLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.add('active')
+        lightbox.focus()
+    }
+
 
     lightboxBuilder() {
         // on recupere le template de la ligthbox
@@ -28,7 +34,6 @@ class Lightbox {
         // on met les elements du template dans la lightbox
         lightbox.appendChild(clone);
         lightbox.setAttribute('aria-label', 'image closeup view');
-        
         let medias  = this.medias;
 
         //on creer les cards medias de la ligthbox
@@ -50,39 +55,46 @@ class Lightbox {
     }
 
     keyboardNav(){
-        const lightbox = document.getElementById('lightbox');
         const lightboxMedias = document.querySelectorAll('.lightboxMedias');
+        const firstMediaGallery = document.querySelector('.gallery-media')
         const mediasArray = Array.from(lightboxMedias);
-        const articles = document.querySelectorAll('.article-media img, .article-media video')
-
+      
         document.body.addEventListener('keydown',(e) => {
-
-            
-            
-            if (e.target.classList.contains('gallery-media') && (e.key == 'Enter') ){
-                console.log('sesame ouvre toi');
-                document.querySelector('.lightbox__close').focus()
-                lightbox.classList.add('active')
+ 
+            if (e.target.classList.contains('gallery-media') && (e.key === 'Enter')){           
+                
+                this.openLightbox()
                 lightboxMedias.forEach((mediaDiv) => {
                     let img = mediaDiv.querySelector('img, video');
-                    
                     if (img.src == e.target.src) mediaDiv.classList.add('lightboxImg')
-                });
-                
+                });  
             }
             
-            
+            if (e.target.classList.contains('lightbox__close') && (e.key === 'Enter') ){
+                firstMediaGallery.focus()
+                const lightbox = document.getElementById('lightbox');
+                let activeImg = document.querySelector('.lightboxImg');
+                lightbox.classList.remove('active');
+                activeImg.classList.remove('lightboxImg');
 
+            }
+            
         })
 
     
         let activMedia = document.querySelector('.lightboxImg');
         let index = mediasArray.indexOf(activMedia);
+       
 
         document.body.addEventListener('keydown', (e) => {  
 
+            const targetClasses = e.target.className;
+            // Lightbox button 'next'
+            const lightboxNextButton = targetClasses.includes('lightbox__next')
+            // Lightbox button 'previous
+            const lightboxPreviousButton = targetClasses.includes('lightbox__prev')
             //press next key
-            if (e.keyCode === 39) {
+            if (e.key === 'ArrowLeft'|| e.key === 'Enter' && (lightboxPreviousButton === true) ) {
                 let activMedia = document.querySelector('.lightboxImg');
                 activMedia.classList.remove('lightboxImg');
                 index++;
@@ -91,7 +103,7 @@ class Lightbox {
                 }
                 lightboxMedias[index].classList.add('lightboxImg');
             }
-            else if (e.keyCode === 37) {
+            else if (e.key === 'ArrowRight' || e.key === 'Enter' && (lightboxNextButton=== true)) {
                 let activMedia = document.querySelector('.lightboxImg');
                 index--;
                 if (index < 0) {
@@ -115,6 +127,7 @@ class Lightbox {
             const targetClasses = event.target.className;
             // Gallery medias
             const media = targetClasses.includes('gallery-media')
+
             // Lightbox close button
             const lightboxCloseButton = targetClasses.includes('lightbox__close')
             // Lightbox button 'next'
@@ -124,7 +137,8 @@ class Lightbox {
             // ----------------------------------------- //
             // Ouvrir la lightbox
             if (media) {
-                lightbox.classList.add('active');
+                
+                lightbox.classList.add('active')  
 
                 // Afficher le premier media dans la lightbox
                 lightboxMedias.forEach((mediaDiv) => {

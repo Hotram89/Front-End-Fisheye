@@ -105,6 +105,4 @@ button {
     opacity: 1;
 }
 
-.lightbox__close:focus {
-    background-color: blue;
-}
+
