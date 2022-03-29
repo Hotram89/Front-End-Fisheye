@@ -55,18 +55,31 @@ class Lightbox {
         const mediasArray = Array.from(lightboxMedias);
         const articles = document.querySelectorAll('.article-media img, .article-media video')
 
-        articles.forEach((article) => {
-            article.addEventListener('keydown', (e) => {
-                if (e.key ==='Enter') {
-                    lightbox.classList.add('active');       
-                }
-            })
+        document.body.addEventListener('keydown',(e) => {
+
+            
+            
+            if (e.target.classList.contains('gallery-media') && (e.key == 'Enter') ){
+                console.log('sesame ouvre toi');
+                document.querySelector('.lightbox__close').focus()
+                lightbox.classList.add('active')
+                lightboxMedias.forEach((mediaDiv) => {
+                    let img = mediaDiv.querySelector('img, video');
+                    
+                    if (img.src == e.target.src) mediaDiv.classList.add('lightboxImg')
+                });
+                
+            }
+            
+            
+
         })
+
     
         let activMedia = document.querySelector('.lightboxImg');
         let index = mediasArray.indexOf(activMedia);
 
-        lightbox.addEventListener('keydown', (e) => {
+        document.body.addEventListener('keydown', (e) => {  
 
             //press next key
             if (e.keyCode === 39) {
@@ -92,6 +105,7 @@ class Lightbox {
 
     addEventListener() {
         const lightbox = document.getElementById('lightbox');
+        
         document.body.addEventListener('click', handleClick)
         function handleClick(event) {
             let lightboxMedias = document.querySelectorAll('.lightboxMedias');
@@ -108,7 +122,6 @@ class Lightbox {
             // Lightbox button 'previous
             const lightboxPreviousButton = targetClasses.includes('fa-chevron-left')
             // ----------------------------------------- //
-
             // Ouvrir la lightbox
             if (media) {
                 lightbox.classList.add('active');
