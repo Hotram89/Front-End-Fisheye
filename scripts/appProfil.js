@@ -1,14 +1,11 @@
 import { ApiProvider } from './providers/ApiProvider.js';
-
 import { ProfilPage } from './pages/ProfilPage.js';
 import { Lightbox } from './utils/Lightbox.js';
 import { submitForm } from './utils/contactForm.js';
 import { Filters } from './utils/Filters.js';
 import { PageError } from './providers/PageError.js';
 
-////////////////////////////////////////
-
-//va chercher les données du json dans la class ApiProvider
+// Va chercher les données du json dans la class ApiProvider
 new ApiProvider()
     .getPhotographers()
     .then(function (apiResult) {
@@ -17,30 +14,33 @@ new ApiProvider()
 
     .then(function (res) {
         let profilPage = new ProfilPage(res);
-        profilPage.generateAll();
-
         let lightbox = new Lightbox(profilPage.mediaFotographers)
-        lightbox.generateLightbox();
+        let menu = document.getElementById('filters');
 
-         let menu = document.getElementById('filters');
+        profilPage.generateAll();
+        lightbox.generateLightbox();
+        // On ajoute les event listeners au menu
         menu.addEventListener('click', (event) => {
-        
-          const domItem = event.target.className
-          
-          if (domItem.includes('selected filters')) {
-            let filter = new Filters()
-            filter.openFilters()
-          }
-          
-          if (domItem.includes('filters') && !domItem.includes('selected')) {
-            let filter = event.target.innerHTML;
-            profilPage.generateCarrousel(filter);
-            profilPage.setTotalLikes();
-            profilPage.generateLike();
-            lightbox.destroyLightbox()
-            lightbox.generateLightbox();
-          }
-        
+            
+            const domItem = event.target.className
+
+            // Si l'élément qui a reçu le clic est une option du menu (pas celle affichée)
+            if (domItem.includes('filters') && !domItem.includes('selected')) {
+                // On rafraîchit la galerie avec les médias triés selon l'option
+                let filter = event.target.innerHTML;
+                profilPage.generateCarrousel(filter);
+                profilPage.setTotalLikes();
+                profilPage.generateLike();
+                // On exporte le tableau trié qu'on stocke dans newGallery
+                const newGallery = profilPage.getMedias()
+                // On vide la Lightbox
+                lightbox.emptyLightbox();
+                // On met à jour le tableau de médias (trié) dans l'objet lightbox
+                lightbox.setMedias(newGallery)
+                // On remplit la lightbox a partir du nouveau tableau trié
+                lightbox.lightboxBuilder()
+            }
+            
         });
 
         menu.addEventListener('keydown',(e) => {

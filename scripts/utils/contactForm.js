@@ -17,9 +17,7 @@ closeSuccessBtn.addEventListener('click', closeSuceesModal);
 // fonction pour afficher la modale de contact
 function displayModal() {
     modal.style.display = 'flex';
-    document.getElementById('firstName').focus();
-   
-
+    document.querySelector('.close_form').focus();
 }
 
 // fonction pour fermer la modale de contact

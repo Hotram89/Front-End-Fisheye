@@ -1,17 +1,24 @@
-import { Filters } from './Filters.js'
-
 class Lightbox {
     constructor(medias) {
         this.medias = medias;
-        
     }
+
     generateLightbox() {
         this.lightboxBuilder();
         this.addEventListener();
         this.keyboardNav();
     }
 
-    lightboxBuilder(filter) {
+    emptyLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.innerHTML = ''
+    }
+
+    setMedias(mediaArray) {
+        this.medias = mediaArray
+    }
+
+    lightboxBuilder() {
         // on recupere le template de la ligthbox
         const template = document.getElementById('lightbox_template');
         const lightbox = document.getElementById('lightbox');
@@ -23,16 +30,12 @@ class Lightbox {
         lightbox.setAttribute('aria-label', 'image closeup view');
         
         let medias  = this.medias;
-        let filters = new Filters(medias);
-        medias = filters.sortBy(filter)
-        console.log(filters);
 
         //on creer les cards medias de la ligthbox
         medias.forEach((media) => {
         // const buildLightboxMedia = lightbox.createElement('div');
             const containerLightbox = lightbox.querySelector('.container');
             const mediaCard = document.createElement('div');
-
 
             if (media.video) {
                 mediaCard.innerHTML = `<video controls src='./assets/photos/${media.video}' alt='${media.title}'></video>
@@ -46,12 +49,6 @@ class Lightbox {
         });
     }
 
-    destroyLightbox(){
-        const lightbox = document.getElementById('lightbox');
-    lightbox.innerHTML = ''
-    }
-
-
     keyboardNav(){
         const lightbox = document.getElementById('lightbox');
         const lightboxMedias = document.querySelectorAll('.lightboxMedias');
@@ -61,10 +58,8 @@ class Lightbox {
         articles.forEach((article) => {
             article.addEventListener('keydown', (e) => {
                 if (e.key ==='Enter') {
-                    console.log('coucou');
                     lightbox.classList.add('active');       
                 }
-                console.log(e);
             })
         })
     
@@ -96,66 +91,69 @@ class Lightbox {
     }
 
     addEventListener() {
-        const gallery = document.querySelector('body');
         const lightbox = document.getElementById('lightbox');
-        const lightboxMedias = document.querySelectorAll('.lightboxMedias');
+        document.body.addEventListener('click', handleClick)
+        function handleClick(event) {
+            let lightboxMedias = document.querySelectorAll('.lightboxMedias');
 
-        gallery.addEventListener('click', function (event) {
-            let classes = event.target.className;
-            let isActiv = classes.includes('gallery-media');
+            // ------------- DOM ELEMENTS ------------- //
+            // Event Targets
+            const targetClasses = event.target.className;
+            // Gallery medias
+            const media = targetClasses.includes('gallery-media')
+            // Lightbox close button
+            const lightboxCloseButton = targetClasses.includes('lightbox__close')
+            // Lightbox button 'next'
+            const lightboxNextButton = targetClasses.includes('fa-chevron-right')
+            // Lightbox button 'previous
+            const lightboxPreviousButton = targetClasses.includes('fa-chevron-left')
+            // ----------------------------------------- //
 
-            //ouvrir la lightbox
-            if (isActiv) {
+            // Ouvrir la lightbox
+            if (media) {
                 lightbox.classList.add('active');
+
+                // Afficher le premier media dans la lightbox
+                lightboxMedias.forEach((mediaDiv) => {
+                    let img = mediaDiv.querySelector('img, video');
+                    if (img.src == event.target.src) mediaDiv.classList.add('lightboxImg')
+                });
             }
 
-            // fermer la lightbox
-            isActiv = classes.includes('lightbox__close');
-            if (isActiv) {
-                let activImg = document.querySelector('.lightboxImg');
+            let mediasArray = Array.from(lightboxMedias);
+            let activeMedia = document.querySelector('.lightboxImg');
+            let index = mediasArray.indexOf(activeMedia);
+
+            // Fermer la lightbox
+            if (lightboxCloseButton) {
+                let activeImg = document.querySelector('.lightboxImg');
                 lightbox.classList.remove('active');
-                activImg.classList.remove('lightboxImg');
+                activeImg.classList.remove('lightboxImg');
             }
 
-            // afficher le media dans la lightbox
-            lightboxMedias.forEach((media) => {
-                let img = media.querySelector('img, video');
+            // Bouton "Suivant"
+            if (lightboxNextButton) {
 
-                if (img.src == event.target.src) {
-                    media.classList.add('lightboxImg');
-                }
-            });
-
-            // bouton suivant
-            isActiv = classes.includes('fa-chevron-right');
-            const mediasArray = Array.from(lightboxMedias);
-
-            let activMedia = document.querySelector('.lightboxImg');
-            let index = mediasArray.indexOf(activMedia);
-
-            if (isActiv) {
-                let activMedia = document.querySelector('.lightboxImg');
-                activMedia.classList.remove('lightboxImg');
+                let activeMedia = document.querySelector('.lightboxImg');
+                activeMedia.classList.remove('lightboxImg');
                 index++;
-                if (index >= lightboxMedias.length) {
-                    index = 0;
-                }
+                if (index >= lightboxMedias.length) index = 0;
                 lightboxMedias[index].classList.add('lightboxImg');
             }
 
-            isActiv = classes.includes('fa-chevron-left');
-            if (isActiv) {
-                let activMedia = document.querySelector('.lightboxImg');
-
+            // Bouton "Précédent"
+            if (lightboxPreviousButton) {
+                let activeMedia = document.querySelector('.lightboxImg');
                 index--;
-                if (index < 0) {
-                    index = lightboxMedias.length - 1;
-                }
-                activMedia.classList.remove('lightboxImg');
+                if (index < 0) index = lightboxMedias.length - 1;
+                activeMedia.classList.remove('lightboxImg');
                 lightboxMedias[index].classList.add('lightboxImg');
             }
-        });
+        };
     }
+    
 }
+
+
 
 export { Lightbox };

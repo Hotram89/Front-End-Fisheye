@@ -2,7 +2,7 @@ class Filters {
   constructor(medias) {
     this.medias = medias;
   }
-
+  
   openFilters() {
     const filtersMenu = document.querySelector(".filtersMenu");
     const selectedFilter = document.querySelector(".selected");
@@ -12,6 +12,7 @@ class Filters {
     filtersMenu.focus();
 
     filtersMenu.addEventListener("click", (event) => {
+      
       wrapper.classList.toggle("active");
       chevron.classList.toggle("active");
 
@@ -30,26 +31,6 @@ class Filters {
          selectedFilter.innerHTML = "Popularité";
       }
     });
-
-    //  filtersMenu.addEventListener("click", (event) => {
-
-    //    let monContenu = event.target.innerHTML;
-
-    //    console.log(monContenu);
-    //    console.log(selectedFilter);
-    //    if ((monContenu === "Date")) {
-    //      event.target.innerHTML = selectedFilter.innerHTML;
-    //      selectedFilter.innerHTML = "Date";
-    //    }
-    //    if (monContenu === "Titre") {
-    //      event.target.innerHTML = selectedFilter.innerHTML;
-    //      selectedFilter.innerHTML = "Titre";
-    //    }
-      
-    //       event.target.innerHTML = selectedFilter.innerHTML;
-    //       selectedFilter.innerHTML = "Popularité";
-      
-    //  });
 
     filtersMenu.addEventListener("keydown", (e) => {
       let focus = document.querySelector(":focus");

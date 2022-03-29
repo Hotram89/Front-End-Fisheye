@@ -10,10 +10,11 @@ class ProfilPage {
         let url = new URL(window.location.href);
         let photographerId = url.searchParams.get('id');
 
-        this.mediaFotographers = new Set();
+        this.mediaFotographers = [];
+
         this.medias.forEach((media) => {
             if (photographerId == media.photographerId) {
-                this.mediaFotographers.add(media);
+                this.mediaFotographers.push(media);
             }
         });
 
@@ -70,7 +71,7 @@ class ProfilPage {
     }
 
     ////////////////////////////////////////////
-    // construit la gallerie de photos et videos
+    // construit la galerie de photos et videos
     generateCarrousel(filter) {
         this.likes = 0;
         const sectionGallery = document.querySelector('.pictures');
@@ -79,12 +80,18 @@ class ProfilPage {
         let medias  = this.mediaFotographers;
         let filters = new Filters(medias);
         medias = filters.sortBy(filter)
-        
+
+        this.mediaFotographers = medias
+
         medias.forEach((media) => {
             builder.build(media);
 
-            this.likes += media.likes;            
+            this.likes += media.likes;
         });
+    }
+
+    getMedias() {
+        return this.mediaFotographers
     }
     nameContactModal() {
         let profil = this.photographer
@@ -118,7 +125,6 @@ class ProfilPage {
         likes.forEach((element) => {
             element.addEventListener('keydown', (e) => {
 
-                
                 if( e.key ==='Enter'){
                     
                     //recup le span nombre

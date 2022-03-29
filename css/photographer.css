@@ -318,10 +318,15 @@ article h2 {
 .close_form {
     opacity: 1;
     cursor: pointer;
+    width: 70px;
+    height: 70px;
+    position: relative;
+
   }
   .close_form:before,
   .close_form:after {
     position: absolute;
+    top: 0;
     content: " ";
     height: 73px;
     width: 10px;
